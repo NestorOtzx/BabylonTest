@@ -48,7 +48,7 @@ var createScene = function () {
     });
 
     
-    BABYLON.SceneLoader.ImportMeshAsync("", "https://aannewball.github.io/myCoolBabylonApp/", "models/mico.glb").then((result) => {
+    BABYLON.SceneLoader.ImportMeshAsync("", "https://nestorotzx.github.io/BabylonTest/", "models/mico.glb").then((result) => {
     	result.meshes[1].position.x = 4;
         result.meshes[1].material = roofMat;
         result.meshes[1].rotate  = new BABYLON.Vector3(0, 45, 0);
