@@ -30,8 +30,12 @@ var createScene = function () {
 
     const roofMat = new BABYLON.StandardMaterial("roofMat");
     roofMat.diffuseTexture = new BABYLON.Texture("https://assets.babylonjs.com/environments/roof.jpg", scene);
+
+    const terrainMat = new BABYLON.StandardMaterial("terrainMat");
+    terrainMat.diffuseTexture = new BABYLON.Texture("https://nestorotzx.github.io/BabylonTest/terrain.jpg", scene);
     
     // Our built-in 'ground' shape.
+    /*
     var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 6, height: 6}, scene);
     let groundMaterial = new BABYLON.StandardMaterial("Ground Material", scene);
     ground.material = groundMaterial;
@@ -41,21 +45,25 @@ var createScene = function () {
     var mat1 = new BABYLON.StandardMaterial("mat1", scene);
 	mat1.diffuseTexture = new BABYLON.Texture("https://i.imgur.com/Wk1cGEq.png", scene);
 	mat1.bumpTexture = new BABYLON.Texture("https://i.imgur.com/wGyk6os.png", scene);
+    */
 
+    
+
+    /*
     BABYLON.SceneLoader.ImportMesh("",Assets.meshes.Yeti.rootUrl, Assets.meshes.Yeti.filename, scene, function(newMeshes){
         newMeshes[0].scaling = new BABYLON.Vector3(0.1, 0.005, 0.1);
     
-    });
+    });*/
 
     
-    BABYLON.SceneLoader.ImportMeshAsync("", "https://nestorotzx.github.io/BabylonTest/", "models/mico.glb").then((result) => {
+    BABYLON.SceneLoader.ImportMeshAsync("", "https://nestorotzx.github.io/BabylonTest/", "models/mountain.glb").then((result) => {
     	result.meshes[1].position.x = 4;
-        result.meshes[1].material = roofMat;
+        result.meshes[1].material = terrainMat;
         result.meshes[1].rotate  = new BABYLON.Vector3(0, 45, 0);
         result.meshes[1].scaling = new BABYLON.Vector3(0.5, 0.5, 0.5);
     });
 
-    BABYLON.SceneLoader.ImportMeshAsync("semi_house", "https://assets.babylonjs.com/meshes/", "both_houses_scene.babylon");
+    //BABYLON.SceneLoader.ImportMeshAsync("semi_house", "https://assets.babylonjs.com/meshes/", "both_houses_scene.babylon");
     return scene;
 };
 
