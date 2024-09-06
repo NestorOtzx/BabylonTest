@@ -43,7 +43,7 @@ var createScene = function () {
 	mat1.bumpTexture = new BABYLON.Texture("https://i.imgur.com/wGyk6os.png", scene);
 
     BABYLON.SceneLoader.ImportMesh("",Assets.meshes.Yeti.rootUrl, Assets.meshes.Yeti.filename, scene, function(newMeshes){
-        newMeshes[0].scaling = new BABYLON.Vector3(0.1, 0.1, 0.1);
+        newMeshes[0].scaling = new BABYLON.Vector3(0.1, 0.005, 0.1);
     
     });
 
