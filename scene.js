@@ -32,7 +32,7 @@ var createScene = function () {
     roofMat.diffuseTexture = new BABYLON.Texture("https://assets.babylonjs.com/environments/roof.jpg", scene);
 
     const terrainMat = new BABYLON.StandardMaterial("terrainMat");
-    terrainMat.diffuseTexture = new BABYLON.Texture("https://nestorotzx.github.io/BabylonTest/terrain.jpg", scene);
+    terrainMat.diffuseTexture = new BABYLON.Texture("https://nestorotzx.github.io/BabylonTest/rock.jpg", scene);
     
     // Our built-in 'ground' shape.
     /*
