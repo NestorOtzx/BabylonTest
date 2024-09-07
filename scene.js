@@ -14,53 +14,53 @@ var sceneToRender = null;
 var createDefaultEngine = function() { return new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true,  disableWebGL2Support: false}); };
 
 var createScene = function () {
-    // This creates a basic Babylon Scene object (non-mesh)
     var scene = new BABYLON.Scene(engine);
-
-    var camera = new BABYLON.ArcRotateCamera("camera", BABYLON.Tools.ToRadians(90), BABYLON.Tools.ToRadians(65), 10, BABYLON.Vector3.Zero(), scene);
-
-    // This attaches the camera to the canvas
+    var camera = new BABYLON.ArcRotateCamera("camera", BABYLON.Tools.ToRadians(0), BABYLON.Tools.ToRadians(65), 250, BABYLON.Vector3.Zero(), scene);
     camera.attachControl(canvas, true);
 
     // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
-
-    // Default intensity is 1. Let's dim the light a small amount
     light.intensity = 0.7;
 
-    const roofMat = new BABYLON.StandardMaterial("roofMat");
-    roofMat.diffuseTexture = new BABYLON.Texture("https://assets.babylonjs.com/environments/roof.jpg", scene);
+    const rockMat = new BABYLON.StandardMaterial("terrainMat");
+    rockMat.diffuseTexture = new BABYLON.Texture("https://nestorotzx.github.io/BabylonTest/textures/rock.jpg", scene);
+    rockMat.specularColor = new BABYLON.Color3(0.2, 0.2, 0.2);
+    rockMat.emissiveColor = new BABYLON.Color3(0.2, 0, 1);
 
-    const terrainMat = new BABYLON.StandardMaterial("terrainMat");
-    terrainMat.diffuseTexture = new BABYLON.Texture("https://nestorotzx.github.io/BabylonTest/rock.jpg", scene);
-    
-    // Our built-in 'ground' shape.
-    /*
-    var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 6, height: 6}, scene);
-    let groundMaterial = new BABYLON.StandardMaterial("Ground Material", scene);
-    ground.material = groundMaterial;
-    let groundTexture = new BABYLON.Texture(Assets.textures.checkerboard_basecolor_png.path, scene);
-    ground.material.diffuseTexture = groundTexture;
-
-    var mat1 = new BABYLON.StandardMaterial("mat1", scene);
-	mat1.diffuseTexture = new BABYLON.Texture("https://i.imgur.com/Wk1cGEq.png", scene);
-	mat1.bumpTexture = new BABYLON.Texture("https://i.imgur.com/wGyk6os.png", scene);
-    */
-
-    
-
-    /*
-    BABYLON.SceneLoader.ImportMesh("",Assets.meshes.Yeti.rootUrl, Assets.meshes.Yeti.filename, scene, function(newMeshes){
-        newMeshes[0].scaling = new BABYLON.Vector3(0.1, 0.005, 0.1);
-    
-    });*/
-
-    
     BABYLON.SceneLoader.ImportMeshAsync("", "https://nestorotzx.github.io/BabylonTest/", "models/mountain.glb").then((result) => {
-    	result.meshes[1].position.x = 4;
-        result.meshes[1].material = terrainMat;
-        result.meshes[1].rotate  = new BABYLON.Vector3(0, 45, 0);
-        result.meshes[1].scaling = new BABYLON.Vector3(0.5, 0.5, 0.5);
+    	result.meshes[1].position.x = 0;
+        result.meshes[1].material = rockMat;
+        result.meshes[1].rotate  = new BABYLON.Vector3(0, 0, 0);
+        result.meshes[1].scaling = new BABYLON.Vector3(1, 1, 1);
+    });
+
+    BABYLON.SceneLoader.ImportMeshAsync("", "https://nestorotzx.github.io/BabylonTest/", "models/dinamita.glb").then((result) => {
+    	result.meshes[1].position.y = -5;
+        result.meshes[1].position.x = 20;
+        result.meshes[1].scaling = new BABYLON.Vector3(2, 2, 2);
+    });
+
+    //Hobbit central
+    BABYLON.SceneLoader.ImportMeshAsync("", "https://nestorotzx.github.io/BabylonTest/", "models/hobbit.glb").then((result) => {
+    	result.meshes[1].position.y = 20;
+        result.meshes[1].position.x = -100;
+        result.meshes[1].scaling = new BABYLON.Vector3(3, 3, 3);
+    });
+
+    //Hobbit izquierdo
+    BABYLON.SceneLoader.ImportMeshAsync("", "https://nestorotzx.github.io/BabylonTest/", "models/hobbit.glb").then((result) => {
+    	result.meshes[1].position.y = 10;
+        result.meshes[1].position.x = -150;
+        result.meshes[1].position.z = -50;
+        result.meshes[1].scaling = new BABYLON.Vector3(3, 3, 3);
+    });
+
+    //Hobbit derecho
+    BABYLON.SceneLoader.ImportMeshAsync("", "https://nestorotzx.github.io/BabylonTest/", "models/hobbit.glb").then((result) => {
+    	result.meshes[1].position.y = 10;
+        result.meshes[1].position.x = -150;
+        result.meshes[1].position.z = 50;
+        result.meshes[1].scaling = new BABYLON.Vector3(3, 3, 3);
     });
 
     //BABYLON.SceneLoader.ImportMeshAsync("semi_house", "https://assets.babylonjs.com/meshes/", "both_houses_scene.babylon");
