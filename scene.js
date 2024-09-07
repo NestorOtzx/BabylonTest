@@ -25,6 +25,7 @@ var createScene = function () {
     const sun = new BABYLON.DirectionalLight("Sun", new BABYLON.Vector3(-0.5, -0.5, 0), scene);
     sun.intensity=0.4;
 
+    /* MOUNTAIN */
     const rockMat = new BABYLON.StandardMaterial("terrainMat");
     rockMat.diffuseTexture = new BABYLON.Texture("https://nestorotzx.github.io/BabylonTest/textures/rock.png", scene);
     rockMat.bumpTexture = new BABYLON.Texture("https://nestorotzx.github.io/BabylonTest/textures/rock_nm.png", scene);
@@ -39,7 +40,22 @@ var createScene = function () {
         result.meshes[1].scaling = new BABYLON.Vector3(1, 1, 1);
     });
 
+    /* ROCKS */
+    const rockMat1 = new BABYLON.StandardMaterial("rockMat1");
+    rockMat1.diffuseTexture = new BABYLON.Texture("https://nestorotzx.github.io/BabylonTest/textures/rock_1.png", scene);
+    rockMat1.bumpTexture = new BABYLON.Texture("https://nestorotzx.github.io/BabylonTest/textures/rock_1nm.png", scene);
+    rockMat1.specularColor = new BABYLON.Color3(0, 0, 0);
+    rockMat1.emissiveColor = new BABYLON.Color3(0.2, 0, 1);
+    rockMat1.ambientColor = new BABYLON.Color3(0.2, 0.1, 1);
+    BABYLON.SceneLoader.ImportMeshAsync("", "https://nestorotzx.github.io/BabylonTest/", "models/rock.glb").then((result) => {
+    	result.meshes[1].position.x = 0;
+        result.meshes[1].position.z = -10;
+        result.meshes[1].material = rockMat1;
+        result.meshes[1].rotate  = new BABYLON.Vector3(0.1, 0, 200);
+        result.meshes[1].scaling = new BABYLON.Vector3(3, 3, 3);
+    });
 
+    /* DYNAMITE */
     const dinMaterial = new BABYLON.StandardMaterial("dinMat", scene);
     dinMaterial.diffuseColor = new BABYLON.Color3(1, 0, 0);
 
@@ -50,19 +66,21 @@ var createScene = function () {
         result.meshes[1].scaling = new BABYLON.Vector3(2, 2, 2);
     });
 
-   
+    //FIREWORKS
+    var fireworkLight = new BABYLON.PointLight("fireworkLight", new BABYLON.Vector3( 20, -5, 0), scene);
+    fireworkLight.intensity = 25;
+    fireworkLight.range = 200;
+    fireworkLight.diffuse = new BABYLON.Color3(1, 0, 0);
+    fireworkLight.specular = new BABYLON.Color3(1, 0.01, 0);
 
+   
+    //Hobbits
     var hobbitlight = new BABYLON.PointLight("hobbitlight", new BABYLON.Vector3( 200, 10, 0), scene);
     hobbitlight.intensity = 4;
     hobbitlight.range = 200;
     hobbitlight.diffuse = new BABYLON.Color3(0.25, 1, 1);
     hobbitlight.specular = new BABYLON.Color3(0.25, 1, 1);
 
-    var fireworkLight = new BABYLON.PointLight("fireworkLight", new BABYLON.Vector3( 20, -5, 0), scene);
-    fireworkLight.intensity = 25;
-    fireworkLight.range = 200;
-    fireworkLight.diffuse = new BABYLON.Color3(1, 0, 0);
-    fireworkLight.specular = new BABYLON.Color3(1, 0.01, 0);
 
     //Hobbit central
     const hobbitMaterial = new BABYLON.StandardMaterial("hobbitMaterial", scene);
