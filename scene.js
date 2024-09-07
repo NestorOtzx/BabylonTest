@@ -51,7 +51,8 @@ var createScene = function () {
     	result.meshes[1].position.x = 0;
         result.meshes[1].position.z = -10;
         result.meshes[1].material = rockMat1;
-        result.meshes[1].rotate  = new BABYLON.Vector3(0.1, 0, 200);
+        result.meshes[1].rotationQuaterion = null;
+        result.meshes[1].rotate  = new BABYLON.Vector3(0.1, 180, 0);
         result.meshes[1].scaling = new BABYLON.Vector3(3, 3, 3);
     });
 
