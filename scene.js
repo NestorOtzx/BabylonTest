@@ -24,8 +24,9 @@ var createScene = function () {
 
     const rockMat = new BABYLON.StandardMaterial("terrainMat");
     rockMat.diffuseTexture = new BABYLON.Texture("https://nestorotzx.github.io/BabylonTest/textures/rock.jpg", scene);
-    rockMat.specularColor = new BABYLON.Color3(0.2, 0.2, 0.2);
+    rockMat.specularColor = new BABYLON.Color3(0, 0, 0);
     rockMat.emissiveColor = new BABYLON.Color3(0.2, 0, 1);
+    rockMat.ambientColor = new BABYLON.Color3(0.2, 0.1, 1);
 
     BABYLON.SceneLoader.ImportMeshAsync("", "https://nestorotzx.github.io/BabylonTest/", "models/mountain.glb").then((result) => {
     	result.meshes[1].position.x = 0;
@@ -36,9 +37,23 @@ var createScene = function () {
 
     BABYLON.SceneLoader.ImportMeshAsync("", "https://nestorotzx.github.io/BabylonTest/", "models/dinamita.glb").then((result) => {
     	result.meshes[1].position.y = -5;
-        result.meshes[1].position.x = 20;
+        result.meshes[1].position.x = 5;
         result.meshes[1].scaling = new BABYLON.Vector3(2, 2, 2);
     });
+
+   
+
+    var hobbitlight = new BABYLON.PointLight("hobbitlight", new BABYLON.Vector3( 100, 50, 0), scene);
+    hobbitlight.intensity = 1;
+    hobbitlight.range = 100;
+    hobbitlight.diffuse = new BABYLON.Color3(0.25, 1, 1);
+    hobbitlight.specular = new BABYLON.Color3(0.25, 1, 1);
+
+    var fireworkLight = new BABYLON.PointLight("fireworkLight", new BABYLON.Vector3( 20, -5, 0), scene);
+    fireworkLight.intensity = 10000;
+    fireworkLight.range = 200;
+    fireworkLight.diffuse = new BABYLON.Color3(1, 0, 0);
+    fireworkLight.specular = new BABYLON.Color3(1, 0.01, 0);
 
     //Hobbit central
     BABYLON.SceneLoader.ImportMeshAsync("", "https://nestorotzx.github.io/BabylonTest/", "models/hobbit.glb").then((result) => {
