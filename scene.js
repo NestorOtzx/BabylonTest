@@ -43,16 +43,43 @@ var createScene = function () {
     /* ROCKS */
     const rockMat1 = new BABYLON.StandardMaterial("rockMat1");
     rockMat1.diffuseTexture = new BABYLON.Texture("https://nestorotzx.github.io/BabylonTest/textures/rock_1.png", scene);
-    rockMat1.bumpTexture = new BABYLON.Texture("https://nestorotzx.github.io/BabylonTest/textures/rock_1nm.png", scene);
     rockMat1.specularColor = new BABYLON.Color3(0, 0, 0);
     rockMat1.emissiveColor = new BABYLON.Color3(0.2, 0, 1);
     rockMat1.ambientColor = new BABYLON.Color3(0.2, 0.1, 1);
+
     BABYLON.SceneLoader.ImportMeshAsync("", "https://nestorotzx.github.io/BabylonTest/", "models/rock.glb").then((result) => {
     	result.meshes[1].position.x = 0;
-        result.meshes[1].position.z = -10;
+        result.meshes[1].position.y = -8;
+        result.meshes[1].position.z = -60;
         result.meshes[1].material = rockMat1;
-        result.meshes[1].rotationQuaterion = null;
-        result.meshes[1].rotate  = new BABYLON.Vector3(0.1, 180, 0);
+        result.meshes[1].rotate  = new BABYLON.Vector3(0.1, 90, 0);
+        result.meshes[1].scaling = new BABYLON.Vector3(3, 3, 3);
+    });
+
+    BABYLON.SceneLoader.ImportMeshAsync("", "https://nestorotzx.github.io/BabylonTest/", "models/rock.glb").then((result) => {
+    	result.meshes[1].position.x = -40;
+        result.meshes[1].position.y = -12;
+        result.meshes[1].position.z = 40;
+        result.meshes[1].material = rockMat1;
+        result.meshes[1].rotate  = new BABYLON.Vector3(0.1, 0, 0);
+        result.meshes[1].scaling = new BABYLON.Vector3(3, 3, 3);
+    });
+    BABYLON.SceneLoader.ImportMeshAsync("", "https://nestorotzx.github.io/BabylonTest/", "models/rock.glb").then((result) => {
+    	result.meshes[1].position.x = -60;
+        result.meshes[1].position.y = -25;
+        result.meshes[1].position.z = -80;
+        result.meshes[1].material = rockMat1;
+        result.meshes[1].rotate  = new BABYLON.Vector3(0.1, 50, 0);
+        result.meshes[1].scaling = new BABYLON.Vector3(3, 3, 3);
+    });
+
+
+    BABYLON.SceneLoader.ImportMeshAsync("", "https://nestorotzx.github.io/BabylonTest/", "models/rock.glb").then((result) => {
+    	result.meshes[1].position.x = 40;
+        result.meshes[1].position.y = 12;
+        result.meshes[1].position.z = 20;
+        result.meshes[1].material = rockMat1;
+        result.meshes[1].rotation  = new BABYLON.Vector3(180, 0, 0);
         result.meshes[1].scaling = new BABYLON.Vector3(3, 3, 3);
     });
 
@@ -68,6 +95,7 @@ var createScene = function () {
     });
 
     //FIREWORKS
+
     var fireworkLight = new BABYLON.PointLight("fireworkLight", new BABYLON.Vector3( 20, -5, 0), scene);
     fireworkLight.intensity = 25;
     fireworkLight.range = 200;
@@ -111,6 +139,7 @@ var createScene = function () {
         result.meshes[1].material = hobbitMaterial;
         result.meshes[1].scaling = new BABYLON.Vector3(3, 3, 3);
     });
+ 
 
     //BABYLON.SceneLoader.ImportMeshAsync("semi_house", "https://assets.babylonjs.com/meshes/", "both_houses_scene.babylon");
     return scene;
