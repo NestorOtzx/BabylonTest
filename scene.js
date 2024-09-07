@@ -24,6 +24,7 @@ var createScene = function () {
 
     const rockMat = new BABYLON.StandardMaterial("terrainMat");
     rockMat.diffuseTexture = new BABYLON.Texture("https://nestorotzx.github.io/BabylonTest/textures/rock.jpg", scene);
+    //myMaterial.bumpTexture = new BABYLON.Texture("PATH TO NORMAL MAP", scene);
     rockMat.specularColor = new BABYLON.Color3(0, 0, 0);
     rockMat.emissiveColor = new BABYLON.Color3(0.2, 0, 1);
     rockMat.ambientColor = new BABYLON.Color3(0.2, 0.1, 1);
